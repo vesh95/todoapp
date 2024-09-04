@@ -58,3 +58,18 @@ func (t *TodoHandler) Show(c *gin.Context) {
 		}{Error: err.Error()})
 	}
 }
+
+func (t *TodoHandler) Delete(c *gin.Context) {
+	id := c.Param("id")
+
+	if todoItem, err := t.Repository.GetByString(id); err == nil && todoItem != nil {
+		t.Repository.Remove(todoItem)
+		c.JSON(http.StatusOK, struct {
+		}{})
+	} else {
+		c.JSON(http.StatusNotFound, struct {
+			Error string `json:"error"`
+		}{Error: err.Error()})
+	}
+
+}

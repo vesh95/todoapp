@@ -15,6 +15,7 @@ func main() {
 	router.GET("/todo", todoHandler.Index)
 	router.POST("/todo", todoHandler.Store)
 	router.GET("/todo/:id", todoHandler.Show)
+	router.DELETE("/todo/:id", todoHandler.Delete)
 
 	err := router.Run("localhost:8080")
 	if err != nil {

@@ -10,6 +10,6 @@ type Repository interface {
 	Get(uuid uuid.UUID) (*Todo, error)
 	GetByString(uuid string) (*Todo, error)
 	Add(todo *Todo)
-	Remove(uuid uuid.UUID)
+	Remove(todo *Todo)
 	Count() int
 }

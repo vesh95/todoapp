@@ -34,16 +34,13 @@ func (t *TodoListStorage) Add(todo *todo.Todo) {
 	t.data.PushBack(todo)
 }
 
-func (t *TodoListStorage) Remove(uuid uuid.UUID) {
-	var search *list.Element = nil
+func (t *TodoListStorage) Remove(todo *todo.Todo) {
 	for e := t.data.Front(); e != nil; e.Next() {
-		currentTodo := e.Value.(*todo.Todo)
-		if currentTodo.ID == uuid {
-			search = e
+		if e.Value == todo {
+			t.data.Remove(e)
+			return
 		}
 	}
-
-	t.data.Remove(search)
 }
 
 func (t *TodoListStorage) Count() int {
