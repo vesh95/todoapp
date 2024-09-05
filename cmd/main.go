@@ -17,7 +17,7 @@ func main() {
 	router.GET("/todo/:id", todoHandler.Show)
 	router.DELETE("/todo/:id", todoHandler.Delete)
 
-	err := router.Run("localhost:8080")
+	err := router.Run("0.0.0.0:8080")
 	if err != nil {
 		panic(err.Error())
 	}
