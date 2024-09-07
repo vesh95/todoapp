@@ -43,8 +43,8 @@ func (t *TodoListStorage) Remove(todo *todo.Todo) {
 	}
 }
 
-func (t *TodoListStorage) Count() int {
-	return t.data.Len()
+func (t *TodoListStorage) Count() int64 {
+	return int64(t.data.Len())
 }
 
 func (t *TodoListStorage) GetByString(uuid string) (*todo.Todo, error) {

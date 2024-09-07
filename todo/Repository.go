@@ -11,5 +11,5 @@ type Repository interface {
 	GetByString(uuid string) (*Todo, error)
 	Add(todo *Todo)
 	Remove(todo *Todo)
-	Count() int
+	Count() int64
 }
