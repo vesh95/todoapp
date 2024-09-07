@@ -104,6 +104,7 @@ func (t *TodoRedisStorage) Add(todo *todo.Todo) {
 }
 
 func (t *TodoRedisStorage) Remove(todo *todo.Todo) {
+	// TODO поправить сообщение "redis: nil" на несуществующем ключе
 	_, err := t.client.Del(t.ctx, todo.ID.String()).Result()
 	if err != nil {
 		t.logger.Println("Remove from Redis error: " + err.Error())

@@ -2,13 +2,17 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
+	"log"
+	"os"
 	"todo/handlers"
 	"todo/storage"
 )
 
 func main() {
+	logger := log.New(os.Stdout, "INFO: ", 0)
 	todoHandler := &handlers.TodoHandler{
-		Repository: storage.NewTodoListStorage(),
+		Repository: storage.NewRedisStorage(&redis.Options{Addr: "localhost:6379", Password: "", DB: 0}, logger),
 	}
 
 	router := gin.Default()
